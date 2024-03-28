@@ -11,6 +11,8 @@ import 'package:islami/utils/app-theme.dart';
 
 
 class HomeScreen extends StatefulWidget{
+
+  static const String routename = "HomeScreen";
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -31,7 +33,7 @@ decoration: const BoxDecoration(
 backgroundColor: AppColors.transparent,
             appBar: buildAppBar(),
            bottomNavigationBar: buildBottomNavigationBar(),
-     body:CurrentTab ,
+        body:CurrentTab ,
         )
       );
   }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:islami/model/screen-details-args.dart';
+import 'package:islami/screens/sura-details.dart';
 import 'package:islami/utils/app-assets.dart';
 import 'package:islami/utils/app-colors.dart';
 import 'package:islami/utils/app-theme.dart';
 import 'package:islami/utils/constants.dart';
 
 class QuranTab extends StatelessWidget {
+  static const String routename ="QuranTab";
   const QuranTab({super.key});
 
   @override
@@ -17,7 +20,7 @@ class QuranTab extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               buildScreenContent(),
-              VerticalDivider(thickness: 3,color: AppColors.Orange,indent: 6,)
+               const VerticalDivider(thickness: 3,color: AppColors.Orange,indent: 6,)
             ],
           ),
         )
@@ -27,50 +30,57 @@ class QuranTab extends StatelessWidget {
     );
   }
 
-  Expanded buildScreenContent() {
-    return Expanded(flex: 7,
-        child: Column(
+  Widget buildScreenContent() {
+    return Column(
+      children: [
+        const Divider(thickness: 3,color: AppColors.Orange,),
+        const Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Divider(thickness: 3,color: AppColors.Orange,),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(child:(Text('verses  ',
-                  textAlign: TextAlign.center,
-                  style: AppTheme.mediumTitleTextStyle,))),
-                Expanded(child:(Text('sura name ',
-                  textAlign: TextAlign.center,
-                  style: AppTheme.mediumTitleTextStyle,))),
-
-              ],
-            ),
-            Divider(thickness: 3,color: AppColors.Orange,),
-            Expanded(flex : 7,
-              child: buildSurasListView(),
-            )
-
-
+            Expanded(child:(Text('verses  ',
+              textAlign: TextAlign.center,
+              style: AppTheme.mediumTitleTextStyle,))),
+            Expanded(child:(Text('sura name ',
+              textAlign: TextAlign.center,
+              style: AppTheme.mediumTitleTextStyle,))),
 
           ],
+        ),
+        const Divider(thickness: 3,color: AppColors.Orange,),
+        Expanded(flex : 7,
+          child: buildSurasListView(),
+        )
 
-               ),
-      );
+
+
+      ],
+
+           );
   }
 
   ListView buildSurasListView() {
     return ListView.builder(
                 itemCount:Constants.suraNames.length,
                 itemBuilder:(context, index){
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(child: Text("${Constants.versesNumber[index]}",
-                        textAlign: TextAlign.center,
-                        style: AppTheme.regularTitleTextStyle,)),
-                      Expanded(child: Text(Constants.suraNames[index],
+                  return InkWell(
+                    onTap:(){
+                    ScreenDetailsArgs arguments = ScreenDetailsArgs(
+                        fileName: "${index+1}.txt",
+                        Name: Constants.suraNames[index]);
+                    Navigator.pushNamed(context, SuraDetails.routename,
+                        arguments: arguments);
+                  } ,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(child: Text("${Constants.versesNumber[index]}",
                           textAlign: TextAlign.center,
-                          style: AppTheme.regularTitleTextStyle)),
+                          style: AppTheme.regularTitleTextStyle,)),
+                        Expanded(child: Text(Constants.suraNames[index],
+                            textAlign: TextAlign.center,
+                            style: AppTheme.regularTitleTextStyle)),
 
-                    ],
+                      ],
+                    ),
                   );
                 }
             );

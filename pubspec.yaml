@@ -59,6 +59,8 @@ flutter:
   uses-material-design: true
   assets:
    - assets/images/
+   - assets/files/quran/
+   - assets/files/ahadeth/
 
 
 
