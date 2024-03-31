@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/model/screen-details-args.dart';
@@ -7,7 +5,7 @@ import 'package:islami/utils/app-theme.dart';
 import 'package:islami/widges/App-Scaffold.dart';
 
 class HadethDetails extends StatefulWidget {
-  static const String routename = "Hadeth-details";
+  static const String routename = "Hadeth_details";
    HadethDetails({super.key});
 
   @override
