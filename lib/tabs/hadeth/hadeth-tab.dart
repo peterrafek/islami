@@ -66,8 +66,10 @@ Navigator.pushNamed(context, HadethDetails.routename
 
                 Expanded(child: Text(
                     hadethName,
+
                     textAlign: TextAlign.center,
                     style: AppTheme.regularTitleTextStyle)),
+
 
               ],
             ),

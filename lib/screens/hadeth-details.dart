@@ -15,7 +15,7 @@ class HadethDetails extends StatefulWidget {
 class _HadethDetailsState extends State<HadethDetails> {
   String FileContent = "";
 
-  late ScreenDetailsArgs args;
+
 
 
   @override
@@ -25,7 +25,7 @@ class _HadethDetailsState extends State<HadethDetails> {
         .settings
         .arguments as ScreenDetailsArgs;
     if (FileContent.isEmpty) {
-      readHadethFile();
+      readHadethFile(args.fileName);
     }
 
     return AppScaffold(
@@ -48,11 +48,13 @@ class _HadethDetailsState extends State<HadethDetails> {
                 , style: AppTheme.mediumTitleTextStyle,
                 textAlign: TextAlign.center,),
             )));
+
   }
 
-  void readHadethFile() async {
+  void readHadethFile(String fileName) async {
     Future<String> FutureFileContent = rootBundle.loadString(
-        "assets/files/ahadeth/${args.fileName}");
+        "assets/files/ahadeth/$fileName");
+
     FileContent = await FutureFileContent;
     print(FileContent);
 

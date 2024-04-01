@@ -1,5 +1,7 @@
 
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/model/screen-details-args.dart';
@@ -16,14 +18,13 @@ class SuraDetails extends StatefulWidget {
 
 class _SuraDetailsState extends State<SuraDetails> {
    String FileContent ="" ;
-   late ScreenDetailsArgs args;
 
 
   @override
   Widget build(BuildContext context) {
     ScreenDetailsArgs args = ModalRoute.of(context)!.settings.arguments as ScreenDetailsArgs;
 if(FileContent.isEmpty) {
-  readSuraFile();
+  readSuraFile(args.fileName);
 }
 
     return AppScaffold(
@@ -45,17 +46,22 @@ if(FileContent.isEmpty) {
             )));
   }
 
-  void readSuraFile() async {
-Future<String> FutureFileContent= rootBundle.loadString("assets/files/quran/${args.fileName}");
+ Future <void> readSuraFile(String fileName) async {
+Future<String> FutureFileContent=
+rootBundle.loadString("assets/files/quran/$fileName");
   FileContent =  await FutureFileContent;
-print(FileContent);
+
   List<String> FileLines =FileContent.split("\n");
   for( int i =0;i < FileLines.length ;i++) {
-    FileLines[i] += "{${i + 1}}";
+    if (FileLines[i].isNotEmpty) {
+      FileLines[i] += "(${i + 1})";
+    }
+
   }
   FileContent= FileLines.join(" ");
 
 
   setState(() {});
+print(FileContent);
   }
 }
