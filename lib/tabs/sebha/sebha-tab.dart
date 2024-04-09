@@ -37,7 +37,7 @@ double turns =0 ;
                 Container(padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: AppColors.Orange
+                      color: AppColors.primiary
                   ),
                   child: Text("${counter}",
                     style: AppTheme.mediumTitleTextStyle,),
@@ -46,7 +46,7 @@ double turns =0 ;
                 SizedBox(height: 25,),
                 Container(padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                      color: AppColors.Orange,
+                      color: AppColors.primiary,
                       borderRadius:
                       BorderRadius.circular(25)),
                   child: InkWell(onTap: (){

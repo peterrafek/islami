@@ -27,7 +27,7 @@ class AhadetTab extends StatelessWidget {
   Widget buildScreenContent() {
     return Column(
       children: [
-        const Divider(thickness: 3,color: AppColors.Orange,),
+        const Divider(thickness: 3,color: AppColors.primiary,),
         const Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
 
@@ -37,7 +37,7 @@ class AhadetTab extends StatelessWidget {
 
           ],
         ),
-        const Divider(thickness: 3,color: AppColors.Orange,),
+        const Divider(thickness: 3,color: AppColors.primiary,),
         Expanded(flex : 7,
           child: buildSurasListView(),
         )

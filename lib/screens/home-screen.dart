@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:islami/provider/settings_provider.dart';
 import 'package:islami/tabs/hadeth/hadeth-tab.dart';
 import 'package:islami/tabs/quran/quran-tab.dart';
 import 'package:islami/tabs/radio/radio-tab.dart';
 import 'package:islami/tabs/sebha/sebha-tab.dart';
+import 'package:islami/tabs/settings/settings_tab.dart';
 import 'package:islami/utils/app-assets.dart';
 import 'package:islami/utils/app-colors.dart';
 import 'package:islami/utils/app-theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -23,10 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget CurrentTab =QuranTab();
 
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of(context);
     return Container(
-decoration: const BoxDecoration(
+decoration:  BoxDecoration(
   image: DecorationImage(
-      image: AssetImage(AppAssets.background))
+      image: AssetImage(settingsProvider.IsDarkMode()?
+          AppAssets.darkBackground: AppAssets.background),
+  )
 ),
 
       child: Scaffold(
@@ -40,50 +46,63 @@ backgroundColor: AppColors.transparent,
 
   Widget buildBottomNavigationBar()  {
     return Theme(
-      data: ThemeData(canvasColor: AppColors.Orange),
+      data: Theme.of(context).copyWith(canvasColor: AppColors.primiary),
       child: BottomNavigationBar(
-          selectedItemColor:AppColors.lightBlack ,
+
           unselectedIconTheme: IconThemeData(color: AppColors.white),
-showSelectedLabels: true,
+        showSelectedLabels: true,
         showUnselectedLabels:true ,
-        backgroundColor: AppColors.Orange,
+        backgroundColor: AppColors.primiary,
             currentIndex:CurrentTabIndex ,
             onTap: (index) {
               CurrentTabIndex = index;
               if (CurrentTabIndex == 0){
                 CurrentTab = QuranTab();
-            }else if (CurrentTabIndex ==1){
+            }
+              else if (CurrentTabIndex ==1){
                 CurrentTab=AhadetTab();
-              }else if (CurrentTabIndex ==2){
+              }
+              else if (CurrentTabIndex ==2){
                 CurrentTab=SebhaTab();
-              }else{CurrentTab=RadioTab();}
+              }
+              else if (CurrentTabIndex ==3){
+                CurrentTab=RadioTab();
+              }
+              else{CurrentTab=SettingsTab();}
               setState(() {
 
               });
 
             },
             items: [
-              buildBottomNavigationBarItem(AppAssets.icQuran,"Quran"),
+              buildBottomNavigationBarItem( AppAssets.icQuran,"Quran"),
               buildBottomNavigationBarItem(AppAssets.icAhadeth, "Ahadeth"),
               buildBottomNavigationBarItem(AppAssets.icSebha, "Sebha"),
-              buildBottomNavigationBarItem(AppAssets.icRadio, "Radio")
+              buildBottomNavigationBarItem(AppAssets.icRadio, "Radio"),
+              buildBottomNavigationBarItem(AppAssets.settingTabLogo, "setting"),
+
             ]
       ),
     );
   }
 
   BottomNavigationBarItem buildBottomNavigationBarItem(
-      String ImagePath,
-      String label
+
+      String  ImagePath ,
+      String label,
+
       ) =>
-      BottomNavigationBarItem(icon: ImageIcon(AssetImage(ImagePath)),label:label);
+      BottomNavigationBarItem(icon: ImageIcon(AssetImage(ImagePath))
+        ,label:label
+
+      );
 
   AppBar buildAppBar() {
     return AppBar(
               backgroundColor: AppColors.transparent,
               centerTitle: true,
                elevation: 0,
-                 title:  const Text("islami",
+                 title:   Text(AppLocalizations.of(context)!.islami,
                   style:AppTheme.appBarTextStyle));
   }
 }

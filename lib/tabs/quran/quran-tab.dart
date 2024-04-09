@@ -5,6 +5,7 @@ import 'package:islami/utils/app-assets.dart';
 import 'package:islami/utils/app-colors.dart';
 import 'package:islami/utils/app-theme.dart';
 import 'package:islami/utils/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuranTab extends StatelessWidget {
   static const String routename ="QuranTab";
@@ -20,7 +21,7 @@ class QuranTab extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               buildScreenContent(),
-               const VerticalDivider(thickness: 3,color: AppColors.Orange,indent: 6,)
+                VerticalDivider(thickness: 3,color: AppColors.primiary,indent: 6,)
             ],
           ),
         )
@@ -33,19 +34,20 @@ class QuranTab extends StatelessWidget {
   Widget buildScreenContent() {
     return Column(
       children: [
-        const Divider(thickness: 3,color: AppColors.Orange,),
-        const Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+         Divider(),
+         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(child:(Text('verses  ',
+            Expanded(child:(Text('verses'
+               ,
               textAlign: TextAlign.center,
               style: AppTheme.mediumTitleTextStyle,))),
-            Expanded(child:(Text('sura name ',
+            Expanded(child:(Text('suraName',
               textAlign: TextAlign.center,
               style: AppTheme.mediumTitleTextStyle,))),
 
           ],
         ),
-        const Divider(thickness: 3,color: AppColors.Orange,),
+        const Divider(),
         Expanded(flex : 7,
           child: buildSurasListView(),
         )

@@ -18,11 +18,11 @@ class RadioTab extends StatelessWidget {
          SizedBox(height: 75,),
          Row(mainAxisAlignment: MainAxisAlignment.center,
            children: [
-           Icon(Icons.skip_previous,size: 50,color: AppColors.Orange),
+           Icon(Icons.skip_previous,size: 50,color: AppColors.primiary),
            SizedBox(width: 25,),
-           Icon(Icons.play_arrow,size: 50,color: AppColors.Orange),
+           Icon(Icons.play_arrow,size: 50,color: AppColors.primiary),
              SizedBox(width: 25,),
-           Icon(Icons.skip_next_rounded,size: 50,color: AppColors.Orange),
+           Icon(Icons.skip_next_rounded,size: 50,color: AppColors.primiary),
          ],
 
 
